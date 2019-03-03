@@ -1,5 +1,5 @@
 import dash
-from dash.dependencies import Input, Output
+#from dash.dependencies import Input, Output
 import dash_html_components as html
 import dash_core_components as dcc
 import dash_table
@@ -84,7 +84,54 @@ app.layout  = html.Div(children=[
     html.Div('Chapters & Colonies', style={'color': 'rgb(215, 0, 0)', 'fontSize': 24, 'font-family':'Lucida Console', 'text-align':'center'}),
     #html.Div('Chapters & Colonies', style={'width': '300px', 'float':'left', 'color': 'rgb(215, 0, 0)', 'fontSize': 24, 'font-family':'Lucida Console', 'text-align':'center'}),
 
-        html.Div(children=[
+html.Div(children=[
+
+    dash_table.DataTable(
+        id='table',
+        columns=[{'name': 'Chapter', 'id': 'Chapter'},
+                 {'name': 'Status', 'id': 'Status'},
+                 {'name': 'Campus', 'id': 'Campus'},
+                 {'name': 'Founding Date', 'id': 'Founding Date'},
+                 {'name': 'Region', 'id': 'Region'},
+             #{'name': 'Status', 'id': 'Status', 'hidden': True}
+             ],
+        data=df.to_dict("rows"),
+        style_cell={'textAlign': 'left', 'font-family':'Lucida Console', 'fontSize':'16px','font-family':'Lucida Console', 'padding':'5px', 'width':'50px'},
+        style_cell_conditional=[
+            {
+                'if': {'row_index': 'odd'},
+                'backgroundColor': 'rgb(248, 248, 248)'
+                }
+        ] + [
+            {
+                'if': {'column_id': c},
+                'textAlign': 'left'
+                } for c in ['Date', 'Region']
+        ],
+        style_data={'whiteSpace': 'normal'},
+        style_header={
+        'backgroundColor': 'rgb(145, 0, 0)',
+        'color':'white',
+        #'fontWeight': 'bold'
+        },
+        n_fixed_rows=1,
+        style_as_list_view=True,
+        css=[{
+        'selector': '.dash-cell div.dash-cell-value',
+        'rule': 'display: inline; white-space: inherit; overflow: inherit; text-overflow: inherit;'
+        }],
+        style_table={
+        'maxHeight': '400',
+        'overflowY': 'scroll'
+        },
+    )
+    ], style={'width':'100%'}),
+
+            html.Div(children=
+            [
+                dcc.Graph(id='graph', figure=fig),
+            ],style={'width':'900px','float':'right',  'display': 'inline'}),
+
             html.Div([
 
                 html.Br(),
@@ -99,58 +146,12 @@ app.layout  = html.Div(children=[
                 html.Img(id='chem_img', src=STARTING_IMG, style={'width':'500px', 'height':'auto', 'position': 'absolute', 'clip':'rect(0px,500px,400px,0px)'}),
 
 
-            ], style={'max-width':'calc(100% - 900px)', 'overflow-wrap': 'break-word', 'float':'left', 'left':'100px', 'font-family':'Lucida Console'}),
+            ], style={'max-width':'calc(100% - 900px)',  'display': 'inline', 'overflow-wrap': 'break-word', 'float':'left', 'left':'100px', 'font-family':'Lucida Console'}),
 
-            html.Div(children=
-            [
-                dcc.Graph(id='graph', figure=fig),
-            ],style={'width':'900px','float':'right'}),
-    ], style={'width':'100%'}),
 
-    html.Br(),
 
-    html.Div(children=[
 
-        dash_table.DataTable(
-            id='table',
-            columns=[{'name': 'Chapter', 'id': 'Chapter'},
-                     {'name': 'Status', 'id': 'Status'},
-                     {'name': 'Campus', 'id': 'Campus'},
-                     {'name': 'Founding Date', 'id': 'Founding Date'},
-                     {'name': 'Region', 'id': 'Region'},
-                 #{'name': 'Status', 'id': 'Status', 'hidden': True}
-                 ],
-            data=df.to_dict("rows"),
-            style_cell={'textAlign': 'left', 'fontSize':'16px','font-family':'Lucida Console', 'padding':'5px', 'width':'50px'},
-            style_cell_conditional=[
-                {
-                    'if': {'row_index': 'odd'},
-                    'backgroundColor': 'rgb(248, 248, 248)'
-                    }
-            ] + [
-                {
-                    'if': {'column_id': c},
-                    'textAlign': 'left'
-                    } for c in ['Date', 'Region']
-            ],
-            style_data={'whiteSpace': 'normal'},
-            style_header={
-            'backgroundColor': 'rgb(145, 0, 0)',
-            'color':'white',
-            #'fontWeight': 'bold'
-            },
-            n_fixed_rows=1,
-            style_as_list_view=True,
-            css=[{
-            'selector': '.dash-cell div.dash-cell-value',
-            'rule': 'display: inline; white-space: inherit; overflow: inherit; text-overflow: inherit;'
-            }],
-            style_table={
-            'maxHeight': '600',
-            'overflowY': 'scroll'
-            },
-        )
-        ], style={'width':'100%', 'font-family':'Lucida Console'}),
+
 ], style={'backgroundColor':'white'})
 
 def dfRowFromHover( hoverData ):
@@ -165,8 +166,8 @@ def dfRowFromHover( hoverData ):
     return pd.Series()
 
 @app.callback(
-    Output('chem_name', 'children'),
-    [Input('graph', 'hoverData')])
+    dash.dependencies.Output('chem_name', 'children'),
+    [dash.dependencies.Input('graph', 'hoverData')])
 def return_chapter_name(hoverData):
     if hoverData is not None:
         if 'points' in hoverData:
@@ -177,8 +178,8 @@ def return_chapter_name(hoverData):
     return STARTING_SCHOOL
 
 @app.callback(
-    Output('chem_desc', 'children'),
-    [Input('graph', 'hoverData')])
+    dash.dependencies.Output('chem_desc', 'children'),
+    [dash.dependencies.Input('graph', 'hoverData')])
 def display_chapter(hoverData):
     if hoverData is not None:
         if 'points' in hoverData:
@@ -189,8 +190,8 @@ def display_chapter(hoverData):
     return CHAPTER
 
 @app.callback(
-    Output('chem_img', 'src'),
-    [Input('graph', 'hoverData')])
+    dash.dependencies.Output('chem_img', 'src'),
+    [dash.dependencies.Input('graph', 'hoverData')])
 def display_image(hoverData):
     if hoverData is not None:
         if 'points' in hoverData:
