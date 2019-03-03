@@ -16,6 +16,8 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(external_stylesheets=external_stylesheets)
 
+server = app.server
+
 df['text'] = '<br>' + df['Chapter'] + '<br>' + df['Status'] + '<br><br><b>' + df['Campus'] + '</b><br>' + df['Location'] + '<br><br>Founded: ' + df['Founding Date'] + '<br>Region: ' + df['Region']
 
 data = [ dict(
