@@ -4,9 +4,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 import dash_table
 import pandas as pd
-import flask
-from flask_cors import CORS
-import os
+
 
 '''
 By Vivien Lee
