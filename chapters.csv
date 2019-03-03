@@ -1,0 +1,35 @@
+Chapter,Status,Campus,Location,Founding Date,Region,lat,long,year,symbol
+Alpha Chapter,Active,Binghamton University,Binghamton NY,March 9 1995,Upstate/Northeast,42.089319,-75.969657,1995,diamond
+Gamma Chapter,Active,Syracuse University,Syracuse NY,November 16 1997,Upstate/Northeast,43.039028,-76.135019,1997,diamond
+Delta Chapter,Active,Stony Brook University,Stony Brook NY,February 28 1998,Tristate,40.912368,-72.823357,1998,diamond
+Zeta Chapter,Active,St. John's University,Queens NY,January 10 1998,Tristate,40.722136,-73.694168,1998,diamond
+Eta Chapter,Active,Rutgers University,New Brunswick NJ,November 7 1999,Tristate,40.740982,-74.173405,1999,diamond
+Iota Chapter,Active,Cornell University,Ithaca NY,May 19 2000,Upstate/Northeast,42.453536,-76.473471,2000,diamond
+Mu Chapter,Active,University of Massachusetts Amherst,Amherst MA,May 12 2001,Upstate/Northeast,42.390998,-72.526970,2001,diamond
+Nu Chapter,Active,Northwestern University,Evanston IL,November 23 2002,Midwest,42.056404,-87.675160,2002,diamond
+Xi Chapter,Active,Northeastern University,Boston MA,June 15 2002,Upstate/Northeast,42.339823,-71.088968,2002,diamond
+Omicron Chapter,Active,The Ohio State University,Columbus OH,May 31 2003,Midwest,40.014190,-83.030786,2003,diamond
+Rho Chapter,Active,University of Florida,Gainesville FL,April 3 2004,Mid-Atlantic/South,29.643567,-82.354962,2004,diamond
+Sigma Chapter,Active,University of Connecticut,Storrs-Mansfield CT,April 10 2004,Tristate,41.807661,-72.253798,2004,diamond
+Tau Chapter,Active,Columbia University,New York NY,December 6 2003,Tristate,40.807552,-73.762830,2003,diamond
+Upsilon Chapter,Active,University at Albany,Albany NY,November 14 2004,Upstate/Northeast,42.689651,-73.827281,2004,diamond
+Phi Chapter,Active,University of Michigan,Ann Arbor MI,April 13 2003,Midwest,42.278044,-83.737967,2003,diamond
+Chi Chapter,Active,University of Maryland - College Park,College Park MD,November 14 2004,Mid-Atlantic/South,38.986802,-76.942426,2004,diamond
+Psi Chapter,Active,University of Illinois - Urbana Champaign,Champaign IL,November 12 2006,Midwest,40.101985,-88.227129,2006,diamond
+Alpha Alpha Chapter,Active,George Mason University,Fairfax VA,November 13 2004,Mid-Atlantic/South,38.831368,-77.311403,2004,diamond
+Alpha Beta Chapter,Active,George Washington University,Washington DC,May 10 2008,Mid-Atlantic/South,38.900413,-77.048573,2008,diamond
+Alpha Gamma Chapter,Active,The University of Texas at Austin,Austin TX,November 21 2009,Mid-Atlantic/South,30.284956,-97.733949,2009,diamond
+Alpha Delta Chapter,Active,Northern Illinois University,Dekalb IL,February 21 2004,Midwest,41.934050,-88.773876,2004,diamond
+Alpha Epsilon Chapter,Active,North Carolina State University,Raleigh NC,November 10 2012,Mid-Atlantic/South,35.784576,-78.682030,2012,diamond
+Epsilon Colony,Active,New York University,New York NY,March 7 1998 - Reestablished May 1 2016,Tristate,40.729432,-73.798888,1998,cross
+Pi Colony,Active,Carnegie Mellon University,Pittsburgh PA,November 3 2002 - Reestablished November 17 2018,Midwest,40.442735,-79.942927,2002,cross
+Colony,Active,University of Denver,Denver CO,April 20 2013,Midwest,39.676576,-104.961929,2013,cross
+Colony,Active,University of North Carolina - Chapel Hill,Chapel Hill NC,November 23 2013,Mid-Atlantic/South,35.904912,-79.046527,2013,cross
+Colony,Active,University of Nevada Reno,Reno NV,May 2 2015,Midwest,39.544183,-119.816494,2015,cross
+Colony,Active,University of South Florida,Tampa FL,November 14 2015,Mid-Atlantic/South,28.058571,-82.414068,2015,cross
+Colony,Active,University of North Carolina at Charlotte,Charlotte NC,November 11 2017,Mid-Atlantic/South,35.307084,-80.735239,2017,cross
+Colony,Active,American University,Washington DC,April 14 2018,Mid-Atlantic/South,38.937570,-77.088932,2018,cross
+Beta Chapter,Inactive,University at Buffalo,Buffalo NY,February 22 1997,Upstate/Northeast,43.000746,-78.789002,1997,triangle
+Theta Chapter,Inactive,Baruch College,New York NY,August 20 1999,Tristate,40.740699,-73.783135,1999,triangle
+ ,Inactive,Miami University,Oxford OH,April 22 2006,Midwest,39.510550,-84.731053,2006,triangle
+ ,Inactive,Duke University,Durham NC,April 3 2010,Mid-Atlantic/South,36.001391,-78.938218,2010,triangle
