@@ -4,6 +4,9 @@ import dash_html_components as html
 import dash_core_components as dcc
 import dash_table
 import pandas as pd
+import flask
+from flask_cors import CORS
+import os
 
 
 '''
@@ -164,7 +167,7 @@ def dfRowFromHover( hoverData ):
 @app.callback(
     Output('chem_name', 'children'),
     [Input('graph', 'hoverData')])
-def return_molecule_name(hoverData):
+def return_chapter_name(hoverData):
     if hoverData is not None:
         if 'points' in hoverData:
             firstPoint = hoverData['points'][0]
