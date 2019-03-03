@@ -59,7 +59,7 @@ layout = dict(
         colorbar = True,
         autosize=False,
         width=900,
-        height=600,
+        height=550,
         geo = dict(
             scope='usa',
             projection=dict( type='albers usa' ),
@@ -80,8 +80,8 @@ STARTING_IMG = df.loc[df['Chapter'] == CHAPTER]['Image'].iloc[0]
 
 app.layout  = html.Div(children=[
 
-    html.Div('Kappa Phi Lambda', style={'color': 'rgb(215, 0, 0)', 'fontSize': 36, 'font-family':'Lucida Console', 'text-align':'center'}),
-    html.Div('Chapters & Colonies', style={'color': 'rgb(215, 0, 0)', 'fontSize': 24, 'font-family':'Lucida Console', 'text-align':'center'}),
+    html.Div('Kappa Phi Lambda', style={'color': 'rgb(215, 0, 0)', 'fontSize': 30, 'font-family':'Lucida Console', 'text-align':'center'}),
+    html.Div('Chapters & Colonies', style={'color': 'rgb(215, 0, 0)', 'fontSize': 20, 'font-family':'Lucida Console', 'text-align':'center'}),
     #html.Div('Chapters & Colonies', style={'width': '300px', 'float':'left', 'color': 'rgb(215, 0, 0)', 'fontSize': 24, 'font-family':'Lucida Console', 'text-align':'center'}),
 
 html.Div(children=[
@@ -121,7 +121,7 @@ html.Div(children=[
         'rule': 'display: inline; white-space: inherit; overflow: inherit; text-overflow: inherit;'
         }],
         style_table={
-        'maxHeight': '400',
+        'maxHeight': '200',
         'overflowY': 'scroll'
         },
     )
