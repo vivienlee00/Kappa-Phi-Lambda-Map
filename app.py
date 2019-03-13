@@ -72,7 +72,7 @@ layout = dict(
         ),
     )
 
-fig = dict( data=data, layout=layout )
+fig = dict( data=data, layout=layout)
 STARTING_SCHOOL = 'Cornell University'
 CHAPTER = df.loc[df['Campus'] == STARTING_SCHOOL]['Chapter'].iloc[0]
 STARTING_IMG = df.loc[df['Chapter'] == CHAPTER]['Image'].iloc[0]
@@ -134,7 +134,7 @@ html.Div(children=[
             html.Div(children=
             [
                 dcc.Graph(id='graph', figure=fig),
-            ],style={'width':'900px','float':'right',  'display': 'inline'}),
+            ],style={'float':'right',  'display': 'inline'}),
 
             html.Div([
 
@@ -156,7 +156,7 @@ html.Div(children=[
 
                 html.P(STARTING_FACT,
                 id='chapter_fact',
-                style=dict(fontSize='15px', marginBottom='2px',fontWeight='lighter' )),
+                style=dict(fontSize='15px', marginBottom='15px',fontWeight='lighter' )),
 
                 html.Img(id='chem_img', src=STARTING_IMG, style={'width':'500px', 'height':'auto', 'position': 'absolute', 'clip':'rect(0px,500px,350px,0px)'}),
 
