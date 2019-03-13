@@ -30,7 +30,7 @@ for css in external_stylesheets:
 
 server = app.server
 
-df['text'] = '<br>' + df['Chapter'] + '<br>' + df['Status'] + '<br><br><b>' + df['Campus'] + '</b><br>' + df['Location'] + '<br><br>Founded: ' + df['Founding Date'] + '<br>Region: ' + df['Region']
+df['text'] = '<br>' + df['Chapter'] + '<br>' + df['Status'] + '<br><br><b>' + df['Campus'] + '</b><br>' + df['Location'] + '<br>Region: ' + df['Region']
 
 data = [ dict(
         type = 'scattergeo',
@@ -42,7 +42,7 @@ data = [ dict(
         customdata = df['Campus'],
         mode = 'markers',
         marker = dict(
-            size = 10,
+            size = 6,
             opacity = 0.8,
             reversescale = True,
             symbol = df['symbol'],
@@ -76,13 +76,17 @@ fig = dict( data=data, layout=layout )
 STARTING_SCHOOL = 'Cornell University'
 CHAPTER = df.loc[df['Campus'] == STARTING_SCHOOL]['Chapter'].iloc[0]
 STARTING_IMG = df.loc[df['Chapter'] == CHAPTER]['Image'].iloc[0]
+STARTING_DATE = "Founded: " + df.loc[df['Chapter'] == CHAPTER]['Founding Date'].iloc[0]
+STARTING_FACT = df.loc[df['Chapter'] == CHAPTER]['Fun Fact'].iloc[0]
 
 
 app.layout  = html.Div(children=[
 
-    html.Div('Kappa Phi Lambda', style={'color': 'rgb(215, 0, 0)', 'fontSize': 30, 'font-family':'Lucida Console', 'text-align':'center'}),
-    html.Div('Chapters & Colonies', style={'color': 'rgb(215, 0, 0)', 'fontSize': 20, 'font-family':'Lucida Console', 'text-align':'center'}),
+    html.Div(children=[
+    html.Div('Kappa Phi Lambda', style={'color': 'white', 'fontSize': 30, 'font-family':'Helvetica', 'text-align':'center', "text-shadow":"rgba(0, 0, 0, 0.298039) 3px 3px 0px"}),
+    html.Div('Chapters & Colonies', style={'color': 'white', 'fontSize': 20, 'font-family':'Helvetica', 'text-align':'center',"text-shadow":"rgba(0, 0, 0, 0.298039) 2px 2px 0px"})
     #html.Div('Chapters & Colonies', style={'width': '300px', 'float':'left', 'color': 'rgb(215, 0, 0)', 'fontSize': 24, 'font-family':'Lucida Console', 'text-align':'center'}),
+    ], style={'padding':'110px 0','margin-left':'37.5%','backgroundImage':'url(https://www.onlygfx.com/wp-content/uploads/2017/07/watercolor-texture-red-5.jpg)','width':'340px','height':'77px','backgroundSize':'contain'}),
 
 html.Div(children=[
 
@@ -96,7 +100,7 @@ html.Div(children=[
              #{'name': 'Status', 'id': 'Status', 'hidden': True}
              ],
         data=df.to_dict("rows"),
-        style_cell={'textAlign': 'left', 'font-family':'Lucida Console', 'fontSize':'16px','font-family':'Lucida Console', 'padding':'5px', 'width':'50px'},
+        style_cell={'fontWeight': 'lighter','textAlign': 'left', 'font-family':'Helvetica', 'fontSize':'16px','padding':'5px', 'width':'50px'},
         style_cell_conditional=[
             {
                 'if': {'row_index': 'odd'},
@@ -110,9 +114,9 @@ html.Div(children=[
         ],
         style_data={'whiteSpace': 'normal'},
         style_header={
-        'backgroundColor': 'rgb(145, 0, 0)',
+        'backgroundColor': 'rgba(175, 37, 27, 0.93)',
         'color':'white',
-        #'fontWeight': 'bold'
+        'fontWeight': 'normal'
         },
         n_fixed_rows=1,
         style_as_list_view=True,
@@ -121,7 +125,7 @@ html.Div(children=[
         'rule': 'display: inline; white-space: inherit; overflow: inherit; text-overflow: inherit;'
         }],
         style_table={
-        'maxHeight': '200',
+        'maxHeight': '240',
         'overflowY': 'scroll'
         },
     )
@@ -137,16 +141,27 @@ html.Div(children=[
                 html.Br(),
 
                 html.H4(STARTING_SCHOOL,
-                id='chem_name'),
+                id='chapter_name', style=dict(marginBottom='5px')),
 
-                html.H5(CHAPTER,
-                id='chem_desc',
-                style=dict(fontSize='20px' )),
+                html.P(CHAPTER,
+                id='chapter_letters',
+                style=dict(fontSize='18px', marginBottom='2px', fontWeight='lighter')),
 
-                html.Img(id='chem_img', src=STARTING_IMG, style={'width':'500px', 'height':'auto', 'position': 'absolute', 'clip':'rect(0px,500px,400px,0px)'}),
+                html.P(STARTING_DATE,
+                id='chapter_date',
+                style=dict(fontSize='18px', marginBottom='15px',fontWeight='lighter')),
+
+                html.P("Fun Fact!",
+                style=dict(fontSize='15px', marginBottom='2px', color='rgba(175, 37, 27, 0.93)',fontWeight='lighter')),
+
+                html.P(STARTING_FACT,
+                id='chapter_fact',
+                style=dict(fontSize='15px', marginBottom='2px',fontWeight='lighter' )),
+
+                html.Img(id='chem_img', src=STARTING_IMG, style={'width':'500px', 'height':'auto', 'position': 'absolute', 'clip':'rect(0px,500px,350px,0px)'}),
 
 
-            ], style={'max-width':'calc(100% - 900px)',  'display': 'inline', 'overflow-wrap': 'break-word', 'float':'left', 'left':'100px', 'font-family':'Lucida Console'}),
+            ], style={'max-width':'calc(100% - 900px)',  'display': 'inline', 'overflow-wrap': 'break-word', 'float':'left', 'left':'100px', 'font-family':'Helvetica'}),
 
 
 
@@ -166,7 +181,7 @@ def dfRowFromHover( hoverData ):
     return pd.Series()
 
 @app.callback(
-    dash.dependencies.Output('chem_name', 'children'),
+    dash.dependencies.Output('chapter_name', 'children'),
     [dash.dependencies.Input('graph', 'hoverData')])
 def return_chapter_name(hoverData):
     if hoverData is not None:
@@ -178,9 +193,9 @@ def return_chapter_name(hoverData):
     return STARTING_SCHOOL
 
 @app.callback(
-    dash.dependencies.Output('chem_desc', 'children'),
+    dash.dependencies.Output('chapter_letters', 'children'),
     [dash.dependencies.Input('graph', 'hoverData')])
-def display_chapter(hoverData):
+def return_chapter_name(hoverData):
     if hoverData is not None:
         if 'points' in hoverData:
             firstPoint = hoverData['points'][0]
@@ -188,6 +203,30 @@ def display_chapter(hoverData):
                 chapter = firstPoint['customdata']
                 return df.loc[df['Campus'] == chapter]['Chapter'].iloc[0]
     return CHAPTER
+
+@app.callback(
+    dash.dependencies.Output('chapter_date', 'children'),
+    [dash.dependencies.Input('graph', 'hoverData')])
+def display_chapter(hoverData):
+    if hoverData is not None:
+        if 'points' in hoverData:
+            firstPoint = hoverData['points'][0]
+            if 'customdata' in firstPoint:
+                chapter = firstPoint['customdata']
+                return "Founded: " + df.loc[df['Campus'] == chapter]['Founding Date'].iloc[0]
+    return STARTING_DATE
+
+@app.callback(
+    dash.dependencies.Output('chapter_fact', 'children'),
+    [dash.dependencies.Input('graph', 'hoverData')])
+def display_chapter(hoverData):
+    if hoverData is not None:
+        if 'points' in hoverData:
+            firstPoint = hoverData['points'][0]
+            if 'customdata' in firstPoint:
+                chapter = firstPoint['customdata']
+                return df.loc[df['Campus'] == chapter]['Fun Fact'].iloc[0]
+    return STARTING_FACT
 
 @app.callback(
     dash.dependencies.Output('chem_img', 'src'),
